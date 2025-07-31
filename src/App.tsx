@@ -19,8 +19,8 @@ const API_OPTIONS = {
 const App = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
-  const [movieList, setMovieList] = useState([]);
-  const [trendingMovies, setTrendingMovies] = useState([]);
+  const [movieList, setMovieList] = useState<any[]>([]);
+  const [trendingMovies, setTrendingMovies] = useState<any[]>([]);
   const [isLoading, setIsLoading] = useState(false);
   const [debounceSearchTerm, setDebounceSearchTerm] = useState('')
 
@@ -66,7 +66,11 @@ const App = () => {
     try {
       const movies = await getTrendingMovies();
 
-      setTrendingMovies(movies);
+      if (movies) {
+        setTrendingMovies(movies);
+      } else {
+        setTrendingMovies([]); 
+      }
     } catch (error) {
       console.error(`Error fetching trending movies: ${error}`);
     }

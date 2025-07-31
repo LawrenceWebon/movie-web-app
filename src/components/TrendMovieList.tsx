@@ -1,4 +1,14 @@
-const TrendMovieList = ({trendingMovies}) => {
+interface Movie {
+  $id: string;
+  poster_url: string;
+  title: string;
+}
+
+interface TrendMovieListProps {
+  trendingMovies: Movie[];
+}
+
+const TrendMovieList: React.FC<TrendMovieListProps> = ({ trendingMovies }) => {
   return (
       <>
         {trendingMovies.length > 0 && (
